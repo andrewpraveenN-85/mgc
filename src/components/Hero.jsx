@@ -16,7 +16,8 @@ import { motion } from "framer-motion";
 const Hero = () => {
   // --- DATA ---------------------------------------------------------------
   const companies = useMemo(
-    () => [
+    () => {
+      const base = [
       {
         name: "MGC GROUP NGO",
         website: "https://www.mgcgroupngo.com/",
@@ -208,7 +209,124 @@ const Hero = () => {
         description:
           "NGO initiatives delivering community development and disaster response programs.",
       },
-    ],
+    ];
+      // List of companies to ensure are present
+      const extraCompanies = [
+        {
+          name: "MG GROUP NGO",
+          website: "https://modelgroupof.com/",
+          description:
+            "International NGO initiatives focused on education, healthcare, and social upliftment programs across regions.",
+        },
+        {
+          name: "BANK USA",
+          website: "https://modelgroupof.com/",
+          description:
+            "U.S.-based banking and finance services for retail, SME, and corporate customers.",
+        },
+        {
+          name: "WISE BANK UK",
+          website: "https://modelgroupof.com/",
+          description:
+            "UK-headquartered smart banking unit providing digital payments, deposits, and remittance services.",
+        },
+        {
+          name: "MGC CASINO USA",
+          website: "https://modelgroupof.com/",
+          description:
+            "U.S. division of MGC’s gaming and entertainment business, offering regulated casino experiences.",
+        },
+        {
+          name: "MG GROUP NGO UK , USA",
+          website: "https://modelgroupof.com/",
+          description:
+            "Cross-border NGO chapters operating in the UK and USA with community and child-welfare programs.",
+        },
+        {
+          name: "MODEL GROUP FINANCE UK , USA",
+          website: "https://modelgroupof.com/",
+          description:
+            "Regional finance operations serving both UK and U.S. markets with lending and investment products.",
+        },
+        {
+          name: "MODEL GROUP INTERNATIONAL (PVT) LTD , SRI LANKA",
+          website: "https://modelgroupof.com/",
+          description:
+            "Sri Lankan private limited entity coordinating Model Group’s South Asian projects and investments.",
+        },
+        {
+          name: "MODEL GROUP OF COMPANIES LLC, USA",
+          website: "https://modelgroupof.com/",
+          description:
+            "U.S.-registered entity overseeing Model Group’s American operations in finance, trade, and services.",
+        },
+        {
+          name: "MODEL GROUP OF COMPANIES LLC, CANADA",
+          website: "https://modelgroupof.com/",
+          description:
+            "Canadian branch for North American compliance, finance, and trading activities.",
+        },
+        {
+          name: "MODEL GROUP OF COMPANIES LTD , UK",
+          website: "https://modelgroupof.com/",
+          description:
+            "UK-registered limited company for European business development, banking, and mobility projects.",
+        },
+        {
+          name: "MODEL USED AUTOMOBILE TRADING FOR EXPORT L.L.C , DUBAI",
+          website: "https://modelgroupof.com/",
+          description:
+            "Dubai-based company specializing in sourcing and exporting used vehicles to global markets.",
+        },
+        {
+          name: "MODEL GROUP COMPANIES LLC,GERMANY",
+          website: "https://modelgroupof.com/",
+          description:
+            "German subsidiary focused on EU logistics, industry partnerships, and financial services.",
+        },
+        {
+          name: "MODEL GROUP COMPANIES PVT,AUSTRALIA",
+          website: "https://modelgroupof.com/",
+          description:
+            "Australia-based private company handling regional investment and trade operations.",
+        },
+        {
+          name: "MODEL GROUP COMPANIES LLC, FINLAND",
+          website: "https://modelgroupof.com/",
+          description:
+            "Nordic office responsible for green finance, technology collaboration, and EU partnerships.",
+        },
+        {
+          name: "MODEL GROUP COMPANIES LLC,SPAIN",
+          website: "https://modelgroupof.com/",
+          description:
+            "Spanish subsidiary supporting Mediterranean business and hospitality ventures.",
+        },
+        {
+          name: "MODEL GROUP COMPANIES LLC,MIDDLE EAST",
+          website: "https://modelgroupof.com/",
+          description:
+            "Regional coordination office for Middle East infrastructure, finance, and public-private projects.",
+        },
+        {
+          name: "MODEL GROUP COMPANIES LTD,KENYA",
+          website: "https://modelgroupof.com/",
+          description:
+            "East African unit working on finance, agriculture, and community development in Kenya.",
+        },
+        {
+          name: "MODEL GROUP KOKSAI,JAPAN",
+          website: "https://modelgroupof.com/",
+          description:
+            "Japan-based international (KOKSAI) arm enabling trade, technology exchange, and financial services.",
+        },
+      ];
+      // Names already present
+      const presentNames = new Set(base.map(c => c.name));
+      // Only add those not present
+      const missing = extraCompanies.filter(c => !presentNames.has(c.name));
+      return [...base, ...missing];
+    },
     []
   );
 
