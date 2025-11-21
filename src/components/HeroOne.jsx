@@ -1,4 +1,7 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect } from "react";
+
+import HeaderTwo from "../layout/HeaderTwo";
+
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import bank from "../assets/carousel/bank.jpg";
@@ -456,273 +459,168 @@ const slides = [
 
 const AUTO_INTERVAL_MS = 2800; // auto move every 2.8s (faster progress bar and slide advance)
 
-const imgEasing = [0.4, 0, 0.2, 1];
-const imgOutEasing = [0.4, 0, 0.2, 1];
-
-const textParent = {
-  hidden: { opacity: 0, y: 12 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-      ease: imgEasing,
-      when: "beforeChildren",
-      staggerChildren: 0.05,
-    },
-  },
-};
-
-const textChild = {
-  hidden: { opacity: 0, y: 8 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.45, ease: imgEasing },
-  },
-};
-
 const HeroOne = () => {
   const [index, setIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
 
-  const touchStartXRef = useRef(null);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((i) => (i + 1) % slides.length);
+    }, AUTO_INTERVAL_MS);
+    return () => clearInterval(interval);
+  }, []);
 
   const next = () => setIndex((i) => (i + 1) % slides.length);
   const prev = () => setIndex((i) => (i - 1 + slides.length) % slides.length);
   const goTo = (i) => setIndex(i % slides.length);
 
-  const pause = () => setIsPaused(true);
-  const resume = () => setIsPaused(false);
-
-  const handleTouchStart = (e) => {
-    setIsPaused(true);
-    const t = e.changedTouches && e.changedTouches[0];
-    touchStartXRef.current = t ? t.clientX : null;
-  };
-
-  const handleTouchEnd = (e) => {
-    const t = e.changedTouches && e.changedTouches[0];
-    const endX = t ? t.clientX : null;
-
-    if (touchStartXRef.current !== null && endX !== null) {
-      const deltaX = endX - touchStartXRef.current;
-      if (Math.abs(deltaX) > 40) {
-        if (deltaX < 0) {
-          next();
-        } else {
-          prev();
-        }
-      }
-    }
-    setIsPaused(false);
-    touchStartXRef.current = null;
-  };
-
-  const handleKeyDown = (e) => {
-    if (e.key === "ArrowLeft") {
-      prev();
-    } else if (e.key === "ArrowRight") {
-      next();
-    }
-  };
-
   const slide = slides[index];
 
   return (
     <section
-      className="w-full flex justify-center items-center py-10 md:py-8"
+      className="relative w-full h-screen overflow-hidden"
       aria-roledescription="carousel"
       aria-label="Company highlights carousel"
     >
-      <div className="max-w-[1300px] w-full px-4 md:px-10">
-        {/* Carousel frame */}
-        <motion.div
-          className="relative overflow-hidden bg-white"
-          onMouseEnter={pause}
-          onMouseLeave={resume}
-          onTouchStart={handleTouchStart}
-          onTouchEnd={handleTouchEnd}
-          onKeyDown={handleKeyDown}
-          tabIndex={0}
-          whileHover={{ y: -2 }}
-          transition={{ type: "spring", stiffness: 220, damping: 22 }}
-        >
-          {/* Content grid: image left, text right */}
-          <div className="grid md:grid-cols-2">
-            {/* Image */}
-            <div className="relative h-[220px] sm:h-[280px] md:h-[500px] md:order-2 overflow-hidden">
-              {/* We only render the active image */}
-              <motion.img
-                key={slide.image}
-                src={slide.image}
-                alt={slide.alt}
-                className="absolute inset-0 h-full w-full object-cover object-center"
-                initial={{ opacity: 0, scale: 1.02 }}
-                animate={{
-                  opacity: 1,
-                  scale: 1.06,
-                  transition: {
-                    opacity: { duration: 0.6, ease: imgEasing },
-                    scale: {
-                      duration: AUTO_INTERVAL_MS / 1000,
-                      ease: "linear",
-                    },
-                  },
-                }}
-                exit={{
-                  opacity: 0,
-                  scale: 1.0,
-                  transition: { duration: 0.4, ease: imgOutEasing },
-                }}
-                loading="eager"
-              />
-              <div className="absolute inset-0 bg-black/10 md:bg-black/10" />
-              {/* Stronger, wider edge blends */}
-              <div className="pointer-events-none absolute inset-y-0 left-0 w-24 md:w-40 bg-linear-to-r from-white to-transparent" />
-              <div className="pointer-events-none absolute inset-y-0 right-0 w-24 md:w-40 bg-linear-to-l from-white to-transparent" />
-              <div className="pointer-events-none absolute inset-x-0 top-0 h-16 md:h-24 bg-linear-to-b from-white to-transparent" />
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 md:h-24 bg-linear-to-t from-white to-transparent" />
-              {/* Corner radial blends for seamless edges */}
-              <div className="pointer-events-none absolute -top-6 -left-6 h-24 w-24 md:h-36 md:w-36 bg-[radial-gradient(circle_at_top_left,white,transparent_65%)]" />
-              <div className="pointer-events-none absolute -top-6 -right-6 h-24 w-24 md:h-36 md:w-36 bg-[radial-gradient(circle_at_top_right,white,transparent_65%)]" />
-              <div className="pointer-events-none absolute -bottom-6 -left-6 h-24 w-24 md:h-36 md:w-36 bg-[radial-gradient(circle_at_bottom_left,white,transparent_65%)]" />
-              <div className="pointer-events-none absolute -bottom-6 -right-6 h-24 w-24 md:h-36 md:w-36 bg-[radial-gradient(circle_at_bottom_right,white,transparent_65%)]" />
-            </div>
+      <HeaderTwo />
 
-            {/* Text (right side) */}
-            <div className="bg-white md:order-1">
-              <motion.div
-                key={index}
-                variants={textParent}
-                initial="hidden"
-                animate="show"
-                className="flex flex-col h-full justify-center gap-4 p-5 sm:p-6 md:p-10 text-left"
-              >
-                <div className="inline-flex w-fit items-center gap-2 rounded-full bg-neutral-900/5 px-3 py-1 text-[11px] font-medium uppercase tracking-wide text-neutral-700 ring-1 ring-inset ring-neutral-900/10 backdrop-blur">
-                  Featured
-                </div>
-                <motion.h2
-                  variants={textChild}
-                  className="text-3xl/[90%] md:text-6xl/[90%] text-neutral-900 font-extrabold leading-tight"
-                >
-                  {slide.title}
-                </motion.h2>
-                <motion.p
-                  variants={textChild}
-                  className="text-neutral-700 text-base/[100%] md:text-lg/[100%] max-w-lg"
-                >
-                  {slide.description}
-                </motion.p>
-                <motion.div
-                  variants={textChild}
-                  className="mt-2 flex flex-wrap items-center justify-start gap-3"
-                >
-                  <a
-                    href={slide.link ?? "#about"}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center rounded-lg bg-black text-white hover:bg-gray-900  px-4 py-2 text-sm font-medium shadow-sm "
-                  >
-                    Visit Site
-                  </a>
-                </motion.div>
+      {/* Background Image */}
+      <motion.div
+        key={slide.image}
+        className="absolute inset-0"
+        initial={{ scale: 1.1, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.9, opacity: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
+        <img
+          src={slide.image}
+          alt={slide.alt}
+          className="w-full h-full object-cover"
+          loading="eager"
+        />
+        <div className="absolute inset-0 bg-black/40" />
+      </motion.div>
 
-                {/* Dots */}
-                <div className="ml-2 mt-2 flex flex-wrap items-center gap-2 max-w-[300px]">
-                  {slides.map((_, i) => (
-                    <motion.button
-                      key={i}
-                      onClick={() => goTo(i)}
-                      aria-label={`Go to slide ${i + 1}`}
-                      className={`h-2.5 w-2.5 rounded-full ${
-                        index === i
-                          ? "bg-neutral-900 ring-1 ring-inset ring-neutral-900/60 shadow"
-                          : "bg-neutral-300 hover:bg-neutral-400"
-                      }`}
-                      animate={{ scale: index === i ? 1.25 : 1 }}
-                      transition={{
-                        type: "spring",
-                        stiffness: 260,
-                        damping: 20,
-                      }}
-                      whileHover={{ scale: index === i ? 1.3 : 1.15 }}
-                    />
-                  ))}
-                </div>
-
-                {/* Controls */}
-                <div className="mt-2 flex items-center gap-3">
-                  <motion.button
-                    onClick={prev}
-                    aria-label="Previous slide"
-                    className="group h-12 w-12 rounded-full bg-white border border-neutral-200 shadow-sm hover:bg-neutral-50 active:scale-95 transition"
-                    whileTap={{ scale: 0.95 }}
-                    whileHover={{ y: -1 }}
-                  >
-                    <span className="sr-only">Previous</span>
-                    <svg
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      className="h-8 w-8 mx-auto text-neutral-700"
-                    >
-                      <path
-                        d="M15 6l-6 6 6 6"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </motion.button>
-                  <motion.button
-                    onClick={next}
-                    aria-label="Next slide"
-                    className="group h-12 w-12 rounded-full bg-white border border-neutral-200 shadow-sm hover:bg-neutral-50 active:scale-95 transition"
-                    whileTap={{ scale: 0.95 }}
-                    whileHover={{ y: -1 }}
-                  >
-                    <span className="sr-only">Next</span>
-                    <svg
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      className="h-8 w-8 mx-auto text-neutral-700"
-                    >
-                      <path
-                        d="M9 6l6 6-6 6"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </motion.button>
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </motion.div>
-        {/* Progress bar (auto move indicator) */}
-        <div className="mt-3 md:mt-8 h-0.5 md:h-1 bg-neutral-200 rounded-full">
-          <div
+      {/* Content Overlay */}
+      <div className="relative z-10 flex items-center justify-center h-full px-6 md:px-12">
+        <div className="max-w-4xl text-center text-white">
+          <motion.div
             key={index}
-            className="h-full bg-linear-to-r from-black/75 to-black/25"
-            style={{
-              width: "0%",
-              animation: `progress ${AUTO_INTERVAL_MS}ms linear 1 forwards`,
-              animationPlayState: isPaused ? "paused" : "running",
-            }}
-            onAnimationEnd={() => {
-              if (!isPaused) next();
-            }}
-          />
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="space-y-6"
+          >
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium text-white border border-white/20">
+              <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+              Featured Company
+            </div>
+            <h1 className="text-5xl md:text-8xl font-black leading-tight">
+              {slide.title}
+            </h1>
+            <p className="text-xl md:text-2xl max-w-2xl mx-auto leading-relaxed">
+              {slide.description}
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
+              <motion.a
+                href={slide.link ?? "#about"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 px-8 py-4 bg-white text-black font-semibold rounded-full shadow-lg hover:bg-gray-100 transition-all"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Visit Website
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                  />
+                </svg>
+              </motion.a>
+            </div>
+          </motion.div>
         </div>
       </div>
 
-      {/* Inline keyframes for progress bar */}
-      <style>{`
-        @keyframes progress { from { width: 0% } to { width: 100% } }
-      `}</style>
+      {/* Navigation Dots */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-1 sm:gap-2">
+        {slides.map((_, i) => (
+          <motion.button
+            key={i}
+            onClick={() => goTo(i)}
+            aria-label={`Go to slide ${i + 1}`}
+            className={`w-1 h-1 sm:w-2 sm:h-2 rounded-full transition-all ${
+              index === i
+                ? "bg-white scale-125"
+                : "bg-white/50 hover:bg-white/70"
+            }`}
+            whileHover={{ scale: 1.2 }}
+          />
+        ))}
+      </div>
+
+      {/* Navigation Arrows */}
+      <motion.button
+        onClick={prev}
+        aria-label="Previous slide"
+        className="absolute left-6 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-all z-50"
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+      >
+        <svg
+          className="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M15 19l-7-7 7-7"
+          />
+        </svg>
+      </motion.button>
+      <motion.button
+        onClick={next}
+        aria-label="Next slide"
+        className="absolute right-6 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-all z-50"
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+      >
+        <svg
+          className="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M9 5l7 7-7 7"
+          />
+        </svg>
+      </motion.button>
+
+      {/* Progress Bar */}
+      <div className="absolute bottom-0 left-0 w-full h-1 bg-white/20">
+        <motion.div
+          key={index}
+          className="h-full bg-white"
+          initial={{ width: "0%" }}
+          animate={{ width: "100%" }}
+          transition={{ duration: AUTO_INTERVAL_MS / 1000, ease: "linear" }}
+        />
+      </div>
     </section>
   );
 };

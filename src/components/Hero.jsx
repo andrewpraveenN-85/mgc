@@ -341,19 +341,6 @@ const Hero = () => {
     []
   );
 
-  const PATTERNS = useMemo(
-    () => ({
-      Finance: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'><path d='M0 20 L20 0 M-10 30 L30 -10 M10 40 L40 10 M0 40 L40 0' stroke='white' stroke-opacity='0.18' stroke-width='2'/></svg>")`,
-      "Non-Profit": `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24'><circle cx='4' cy='4' r='2' fill='white' fill-opacity='0.18'/></svg>")`,
-      Gaming: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='28' height='28'><rect x='0' y='0' width='1' height='28' fill='white' fill-opacity='0.14'/><rect x='0' y='0' width='28' height='1' fill='white' fill-opacity='0.14'/></svg>")`,
-      Trading: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32'><path d='M0 16h32 M16 0v32' stroke='white' stroke-opacity='0.12' stroke-width='1'/></svg>")`,
-      Corporation: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='16'><path d='M0 8 Q12 0 24 8 T48 8' fill='none' stroke='white' stroke-opacity='0.12' stroke-width='1.5'/></svg>")`,
-    }),
-    []
-  );
-
-  const getPattern = (type) => PATTERNS[type] || PATTERNS.Corporation;
-
   const getLocation = (full) => {
     if (!full) return "";
     const idx = full.lastIndexOf(",");
@@ -422,18 +409,18 @@ const Hero = () => {
   }, [sortedCompanies, activeType, activeLocation, query]);
 
   // --- helpers ------------------------------------------------------------
-  const getIcon = (type, size = "w-6 h-6") => {
+  const getIcon = (type, size = "w-6 h-6", color = "text-white") => {
     switch (type) {
       case "Finance":
-        return <Globe className={`${size} text-white`} />;
+        return <Globe className={`${size} ${color}`} />;
       case "Non-Profit":
-        return <Sparkles className={`${size} text-white`} />;
+        return <Sparkles className={`${size} ${color}`} />;
       case "Gaming":
-        return <ExternalLink className={`${size} text-white`} />;
+        return <ExternalLink className={`${size} ${color}`} />;
       case "Trading":
-        return <ArrowUpRight className={`${size} text-white`} />;
+        return <ArrowUpRight className={`${size} ${color}`} />;
       default:
-        return <Building2 className={`${size} text-white`} />;
+        return <Building2 className={`${size} ${color}`} />;
     }
   };
 
@@ -509,16 +496,9 @@ const Hero = () => {
         {`
           @keyframes pulseGlow { 0%,100%{box-shadow:0 0 10px rgba(0,0,0,.06);} 50%{box-shadow:0 0 24px rgba(0,0,0,.12);} }
           .animate-pulse-glow{ animation:pulseGlow 1.6s ease-in-out infinite; }
-          @keyframes gradientShift { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
-          @keyframes panPattern { 0%{background-position:0 0} 100%{background-position:80px 40px} }
-          @keyframes sheenSweep { 0%{transform:translateX(-150%) rotate(12deg); opacity:0} 25%{opacity:.35} 100%{transform:translateX(250%) rotate(12deg); opacity:0} }
-          .animate-gradient{ animation:gradientShift 3.5s ease-in-out infinite; }
-          .animate-pan{ animation:panPattern 6s linear infinite; }
-          .raise-icon{ transform: translateY(-4px) scale(1.05) rotate(-6deg); transition: transform .35s cubic-bezier(.2,.8,.2,1); }
-          .animate-sheen{ animation:sheenSweep 2200ms ease-out infinite; }
         `}
       </style>
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-[1200px] mx-auto">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -604,7 +584,7 @@ const Hero = () => {
         </div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {filteredCompanies.map((c, i) => {
             const location = getLocation(c.name) || "Global";
             const type = getCompanyType(c.name);
@@ -614,101 +594,81 @@ const Hero = () => {
             return (
               <motion.article
                 key={c.name}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: -6 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{
-                  duration: 0.35,
-                  delay: i * 0.03,
+                  duration: 0.4,
+                  delay: i * 0.05,
                   ease: "easeOut",
                 }}
-                className={`group relative rounded-3xl overflow-hidden border ${colors.border} bg-white/80 backdrop-blur-sm shadow-sm hover:shadow-xl transition-all duration-300 animate-pulse-glow cursor-pointer`}
+                className="group relative bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 cursor-pointer overflow-hidden"
                 role="link"
                 aria-label={`Open ${c.name} website`}
                 tabIndex={0}
-                onClick={() => onCardClick(c.website, c.name)}
+                onClick={() => onCardClick(c.website)}
                 onKeyDown={(e) => {
                   if (e.key === "Enter" || e.key === " ") {
                     e.preventDefault();
-                    onCardClick(c.website, c.name);
+                    onCardClick(c.website);
                   }
                 }}
               >
-                {/* Gradient header ribbon */}
-                <div
-                  className={`relative h-24 w-full bg-linear-to-r ${colors.gradient} isolate bg-size-[200%_200%] animate-gradient`}
-                >
-                  <div
-                    className="absolute inset-0 z-0 opacity-70 mix-blend-overlay pointer-events-none animate-pan"
-                    style={{
-                      backgroundImage: getPattern(type),
-                      backgroundRepeat: "repeat",
-                      backgroundSize: "auto",
-                    }}
-                    aria-hidden
-                  />
-                  {/* sheen sweep on hover */}
-                  <div
-                    className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/2 opacity-0 group-hover:opacity-100 animate-sheen"
-                    style={{
-                      background:
-                        "linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.6) 50%, rgba(255,255,255,0) 100%)",
-                    }}
-                  />
-                  {/* floating icon */}
-                  <div
-                    className={`absolute -bottom-6 left-6 p-3 rounded-2xl ${colors.icon} shadow-lg ${colors.glow} z-10`}
-                  >
-                    {isNgo ? (
-                      <img
-                        src={mgcNgoIcon}
-                        alt="MGC GROUP NGO"
-                        className="w-14 h-8 object-contain"
-                      />
-                    ) : (
-                      getIcon(type, "w-6 h-6")
-                    )}
-                  </div>
-                </div>
+                {/* Subtle top accent */}
+                <div className={`h-1 w-full ${colors.icon}`}></div>
 
-                {/* Body */}
-                <div className="pt-10 px-6 pb-6">
-                  <div className="flex items-start justify-between gap-3">
-                    <h3 className="font-extrabold text-[1.05rem] leading-snug text-gray-900">
-                      {c.name}
-                    </h3>
-                    <span
-                      className={`px-2.5 py-1 text-[11px] font-semibold rounded-xl border ${colors.border} ${colors.bg}`}
-                    >
+                {/* Card Content */}
+                <div className="p-6">
+                  {/* Header with icon and type */}
+                  <div className="flex items-center justify-between mb-4">
+                    <div className={`p-2 rounded-md ${colors.bg}`}>
+                      {isNgo ? (
+                        <img
+                          src={mgcNgoIcon}
+                          alt="MGC GROUP NGO"
+                          className="w-6 h-6 object-contain"
+                        />
+                      ) : (
+                        getIcon(type, "w-6 h-6", colors.text)
+                      )}
+                    </div>
+                    <span className={`px-2 py-1 text-xs font-medium rounded border ${colors.border} ${colors.text} bg-gray-50`}>
                       {type}
                     </span>
                   </div>
 
-                  <div className="mt-3 flex items-center gap-2 text-sm text-gray-500">
-                    <div className={`p-1.5 rounded-lg ${colors.bg}`}>
-                      <MapPin className={`w-3.5 h-3.5 ${colors.text}`} />
-                    </div>
-                    <span className="truncate font-medium">{location}</span>
+                  {/* Company Name */}
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2 leading-tight">
+                    {c.name}
+                  </h3>
+
+                  {/* Location */}
+                  <div className="flex items-center gap-2 text-sm text-gray-600 mb-3">
+                    <MapPin className="w-4 h-4 text-gray-400" />
+                    <span>{location}</span>
                   </div>
 
-                  <p className="mt-3 text-sm text-gray-700/90 leading-relaxed line-clamp-4 min-h-18">
+                  {/* Description */}
+                  <p className="text-sm text-gray-700 leading-relaxed mb-4 line-clamp-3">
                     {c.description}
                   </p>
 
-                  <div className="mt-5 flex items-center justify-between gap-3">
-                    <div className="text-xs text-gray-500 truncate">
+                  {/* Footer */}
+                  <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                    <div className="text-xs text-gray-500">
                       {getDomain(c.website)}
                     </div>
-                    <a
-                      href={c.website}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-semibold bg-black text-white hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onCardClick(c.website);
+                      }}
+                      className="inline-flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded transition-colors"
                       aria-label={`Visit ${c.name} website`}
                     >
-                      Visit site
-                      <ExternalLink className="w-4 h-4" />
-                    </a>
+                      Visit
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </button>
                   </div>
                 </div>
               </motion.article>

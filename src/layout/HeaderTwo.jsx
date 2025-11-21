@@ -3,9 +3,10 @@ import { Menu, X } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 import logo from "../assets/logo.jpg";
 
-const Header = () => {
+const HeaderTwo = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("Companies");
+  const [isScrolled, setIsScrolled] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -29,12 +30,21 @@ const Header = () => {
     if (match) setActiveTab(match[0]);
   }, [location.pathname, routeByItem]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <header className="sticky top-0 z-40 w-full bg-white backdrop-blur-md border-b border-gray-200/50 shadow-sm">
-      <div className="flex flex-col justify-center items-center px-6 lg:px-10 py-4">
+    <header className={`fixed top-0 z-40 w-full ${isScrolled ? 'bg-white backdrop-blur-md border-b border-gray-200/50 shadow-sm' : 'bg-transparent'}`}>
+      <div className="flex flex-col justify-center items-center px-6 lg:px-10 py-4 w-full">
         <div className="max-w-[1300px] w-full flex flex-row justify-between items-center">
           {/* Logo */}
-          <div className="flex items-center bg-white px-2 py-2">
+          <div className="flex items-center bg-white p-2 rounded-lg">
             <img 
               src={logo} 
               alt="Company Logo"
@@ -56,13 +66,13 @@ const Header = () => {
                 }}
                 className={`relative px-4 py-2 text-sm uppercase font-extrabold transition-all cursor-pointer duration-200 rounded-lg group ${
                   activeTab === item
-                    ? "bg-linear-to-r from-sky-700 via-cyan-700 to-blue-600 text-transparent bg-clip-text"
-                    : "text-gray-600 hover:text-gray-900"
+                    ? "bg-linear-to-r from-sky-500 via-cyan-500 to-blue-300 text-transparent bg-clip-text"
+                    : isScrolled ? "text-gray-600 hover:text-gray-900" : "text-white hover:text-gray-200"
                 }`}
               >
                 {item}
                 <span
-                  className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-linear-to-r from-sky-700 via-cyan-700 to-blue-600 transition-all duration-300 ${
+                  className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-linear-to-r from-sky-500 via-cyan-500 to-blue-400 transition-all duration-300 ${
                     activeTab === item ? "w-12" : "w-0 group-hover:w-8"
                   }`}
                 />
@@ -73,7 +83,7 @@ const Header = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
+            className={`lg:hidden p-2 rounded-lg transition-colors ${isScrolled ? 'text-gray-600 hover:text-gray-900 hover:bg-gray-100' : 'text-white hover:text-gray-200 hover:bg-white/10'}`}
             aria-label="Toggle menu"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -82,7 +92,7 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
-          <div className="lg:hidden w-full max-w-7xl mt-4 py-4 border-t border-gray-200 animate-in slide-in-from-top duration-200">
+          <div className="lg:hidden w-full max-w-7xl mt-4 py-4 border-t border-gray-200 bg-white animate-in slide-in-from-top duration-200">
             <nav className="flex flex-col gap-1">
               {navItems.map((item) => (
                 <button
@@ -111,4 +121,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default HeaderTwo;

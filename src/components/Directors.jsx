@@ -16,81 +16,62 @@ const Directors = () => {
           Our experience is our advantage
         </p>
 
-        <div className="mt-12 flex flex-col md:flex-row justify-between items-center gap-10 max-w-2xl w-full">
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl w-full">
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="flex flex-col items-center text-center group"
+            className="group bg-white/95 backdrop-blur-sm border border-gray-200/60 rounded-xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden"
           >
-            <div
-              className="relative rounded-full overflow-hidden w-56 h-56 md:w-64 md:h-64 ring-4 ring-sky-200 shadow-md"
-              tabIndex={0}
-              aria-label="About Mr. Roshan Awantha"
-            >
-              <img
-                src={per1}
-                alt="Executive Director"
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                loading="lazy"
-              />
-            </div>
-            <h3 className="mt-4 text-2xl font-semibold text-gray-900">
-              Mr. Roshan Awantha
-            </h3>
-            <p className="text-sm text-gray-500">Chairman</p>
-            <div className="mt-3 w-56 md:w-64">
-              <div className="relative rounded-2xl bg-white/80 backdrop-blur-md shadow-xl border border-white/40 ring-1 ring-sky-100/60 p-4">
-                {/* top gradient accent bar */}
-                <div className="absolute -top-px left-2 right-2 h-0.5 rounded-full bg-linear-to-r from-sky-500 via-cyan-500 to-blue-600" />
-                {/* subtle corner glow */}
-                <div className="pointer-events-none absolute -inset-px rounded-2xl bg-linear-to-br from-sky-500/0 via-sky-500/0 to-sky-500/10" />
-                <div className="relative flex gap-2">
-                  {/* inline quote icon */}
-                  <svg className="mt-0.5 w-4 h-4 shrink-0 text-sky-600" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7.17 6A4.17 4.17 0 0 0 3 10.17V21h7.5v-9.5H6.5c0-2.1.7-3.5 2.67-4.23L7.17 6Zm9 0A4.17 4.17 0 0 0 12 10.17V21h7.5v-9.5h-4c0-2.1.7-3.5 2.67-4.23L16.17 6Z"/></svg>
-                  <p className="text-sm text-gray-800 leading-relaxed">
-                    Mr. Roshan Awantha is the visionary leader behind Model Group of Companies, known for strategic innovation and global expansion.
-                  </p>
-                </div>
+            <div className="h-1 bg-linear-to-r from-blue-500 to-indigo-600"></div>
+            <div className="p-8 text-center">
+              <div className="w-36 h-36 mx-auto mb-6 rounded-full overflow-hidden border-4 border-gray-100 shadow-md group-hover:shadow-lg transition-shadow">
+                <img
+                  src={per1}
+                  alt="Executive Director"
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
               </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                Mr. Roshan Awantha
+              </h3>
+              <div className="inline-flex items-center px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-sm font-medium mb-4">
+                Chairman
+              </div>
+              <p className="text-gray-600 leading-relaxed max-w-sm mx-auto">
+                Mr. Roshan Awantha is the visionary leader behind Model Group of Companies, known for strategic innovation and global expansion.
+              </p>
             </div>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
             viewport={{ once: true }}
-            className="flex flex-col items-center text-center group"
+            className="group bg-white/95 backdrop-blur-sm border border-gray-200/60 rounded-xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden"
           >
-            <div
-              className="relative rounded-full overflow-hidden w-56 h-56 md:w-64 md:h-64 ring-4 ring-cyan-200 shadow-md"
-              tabIndex={0}
-              aria-label="About Mrs. Sunethra Thennakoon"
-            >
-              <img
-                src={per2}
-                alt="Operations Director"
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                loading="lazy"
-              />
-            </div>
-            <h3 className="mt-4 text-2xl font-semibold text-gray-900">
-              Mrs. Sunethra Thennakoon
-            </h3>
-            <p className="text-sm text-gray-500">Director</p>
-            <div className="mt-3 w-56 md:w-64">
-              <div className="relative rounded-2xl bg-white/80 backdrop-blur-md shadow-xl border border-white/40 ring-1 ring-teal-100/60 p-4">
-                <div className="absolute -top-px left-2 right-2 h-0.5 rounded-full bg-linear-to-r from-teal-500 via-emerald-500 to-cyan-600" />
-                <div className="pointer-events-none absolute -inset-px rounded-2xl bg-linear-to-br from-teal-500/0 via-teal-500/0 to-teal-500/10" />
-                <div className="relative flex gap-2">
-                  <svg className="mt-0.5 w-4 h-4 shrink-0 text-teal-600" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7.17 6A4.17 4.17 0 0 0 3 10.17V21h7.5v-9.5H6.5c0-2.1.7-3.5 2.67-4.23L7.17 6Zm9 0A4.17 4.17 0 0 0 12 10.17V21h7.5v-9.5h-4c0-2.1.7-3.5 2.67-4.23L16.17 6Z"/></svg>
-                  <p className="text-sm text-gray-800 leading-relaxed">
-                    Mrs. Sunethra Thennakoon oversees operations and corporate governance, ensuring excellence across all group entities.
-                  </p>
-                </div>
+            <div className="h-1 bg-linear-to-r from-emerald-500 to-teal-600"></div>
+            <div className="p-8 text-center">
+              <div className="w-36 h-36 mx-auto mb-6 rounded-full overflow-hidden border-4 border-gray-100 shadow-md group-hover:shadow-lg transition-shadow">
+                <img
+                  src={per2}
+                  alt="Operations Director"
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
               </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                Mrs. Sunethra Thennakoon
+              </h3>
+              <div className="inline-flex items-center px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-sm font-medium mb-4">
+                Director
+              </div>
+              <p className="text-gray-600 leading-relaxed max-w-sm mx-auto">
+                Mrs. Sunethra Thennakoon oversees operations and corporate governance, ensuring excellence across all group entities.
+              </p>
             </div>
           </motion.div>
         </div>
