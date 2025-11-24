@@ -42,13 +42,13 @@ const Footer = () => {
 
   return (
     <footer className="bg-gray-900 text-gray-300 pt-16 pb-8">
-      <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-10">
+      <div className="max-w-[1200px] mx-auto px-4 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
         {/* CALL US TODAY */}
         <div>
           <h3 className="text-white text-xl font-semibold mb-4 flex items-center gap-2">
             <Phone size={18} /> CALL US TODAY
           </h3>
-          <ul className="space-y-2 text-sm">
+          <ul className="space-y-1 text-sm">
             {contacts.map((c, i) => (
               <li key={i}>
                 <span className="font-medium text-white">{c.country}:</span>{" "}
@@ -64,7 +64,7 @@ const Footer = () => {
             <Mail size={18} /> GET IN TOUCH
           </h3>
           <p className="text-sm mb-2">model@modelgroupof.com</p>
-          <h4 className="text-white text-lg font-semibold mt-4">
+          <h4 className="text-white text-lg font-semibold mt-12">
             MODEL GROUP OF COMPANIES
           </h4>
           <p className="text-sm mt-2 leading-relaxed">
