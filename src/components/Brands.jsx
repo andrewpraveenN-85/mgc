@@ -79,105 +79,124 @@ const Brands = () => {
           <img
             src={b1}
             alt="Brand 1"
+            loading="lazy"
             className="w-20 h-20 shrink-0 opacity-80 hover:opacity-100 scale-100 hover:scale-105 transition-transform duration-300 ease-out grayscale hover:grayscale-0"
           />
           <img
             src={b2}
             alt="Brand 2"
+            loading="lazy"
             className="w-[180px] h-20 shrink-0 opacity-80 hover:opacity-100 scale-100 hover:scale-105 transition-transform duration-300 ease-out grayscale hover:grayscale-0"
           />
           <img
             src={b4}
             alt="Brand 4"
+            loading="lazy"
             className="w-20 h-20 shrink-0 opacity-80 hover:opacity-100 scale-100 hover:scale-105 transition-transform duration-300 ease-out grayscale hover:grayscale-0"
           />
 
           <img
             src={b5}
             alt="Brand 5"
+            loading="lazy"
             className="w-[180px] h-20 shrink-0 opacity-80 hover:opacity-100 scale-100 hover:scale-105 transition-transform duration-300 ease-out grayscale hover:grayscale-0"
           />
           <img
             src={b6}
             alt="Brand 6"
+            loading="lazy"
             className="w-[180px] h-20 shrink-0 opacity-80 hover:opacity-100 scale-100 hover:scale-105 transition-transform duration-300 ease-out grayscale hover:grayscale-0"
           />
           <img
             src={b7}
             alt="Brand 7"
+            loading="lazy"
             className="w-[180px] h-20 shrink-0 opacity-80 hover:opacity-100 scale-100 hover:scale-105 transition-transform duration-300 ease-out grayscale hover:grayscale-0"
           />
           <img
             src={b8}
             alt="Brand 8"
+            loading="lazy"
             className="w-20 h-20 shrink-0 opacity-80 hover:opacity-100 scale-100 hover:scale-105 transition-transform duration-300 ease-out grayscale hover:grayscale-0"
           />
           <img
             src={b9}
             alt="Brand 9"
+            loading="lazy"
             className="w-[180px] h-20 shrink-0 opacity-80 hover:opacity-100 scale-100 hover:scale-105 transition-transform duration-300 ease-out grayscale hover:grayscale-0"
           />
           <img
             src={b10}
             alt="Brand 10"
+            loading="lazy"
             className="w-[130px] h-20 shrink-0 opacity-80 hover:opacity-100 scale-100 hover:scale-105 transition-transform duration-300 ease-out grayscale hover:grayscale-0"
           />
 
           <img
             src={b13}
             alt="Brand 4"
+            loading="lazy"
             className="w-20 h-20 shrink-0 opacity-80 hover:opacity-100 scale-100 hover:scale-105 transition-transform duration-300 ease-out grayscale hover:grayscale-0"
           />
 
           <img
             src={b11}
             alt="Brand 11"
+            loading="lazy"
             className="w-[180px] h-20 shrink-0 opacity-80 hover:opacity-100 scale-100 hover:scale-105 transition-transform duration-300 ease-out grayscale hover:grayscale-0"
           />
           <img
             src={b12}
             alt="Brand 12"
+            loading="lazy"
             className="w-[180px] h-20 shrink-0 opacity-80 hover:opacity-100 scale-100 hover:scale-105 transition-transform duration-300 ease-out grayscale hover:grayscale-0"
           />
           <img
             src={b3}
             alt="Brand 3"
+            loading="lazy"
             className="w-[180px] h-20 shrink-0 opacity-80 hover:opacity-100 scale-100 hover:scale-105 transition-transform duration-300 ease-out grayscale hover:grayscale-0"
           />
           {/* duplicate for seamless loop */}
           <img
             src={b1}
             alt="Brand 1 duplicate"
+            loading="lazy"
             className="w-20 h-20 shrink-0 opacity-80 hover:opacity-100 scale-100 hover:scale-105 transition-transform duration-300 ease-out grayscale hover:grayscale-0"
             aria-hidden="true"
           />
           <img
             src={b2}
             alt="Brand 2 duplicate"
+            loading="lazy"
             className="w-[180px] h-20 shrink-0 opacity-80 hover:opacity-100 scale-100 hover:scale-105 transition-transform duration-300 ease-out grayscale hover:grayscale-0"
             aria-hidden="true"  
           />
           <img
             src={b3}
             alt="Brand 3 duplicate"
+            loading="lazy"
             className="w-[180px] h-20 shrink-0 opacity-80 hover:opacity-100 scale-100 hover:scale-105 transition-transform duration-300 ease-out grayscale hover:grayscale-0"
             aria-hidden="true"
           />
           <img
             src={b4}
             alt="Brand 4 duplicate"
+            loading="lazy"
             className="w-[180px] h-20 shrink-0 opacity-80 hover:opacity-100 scale-100 hover:scale-105 transition-transform duration-300 ease-out grayscale hover:grayscale-0"
             aria-hidden="true"
           />
           <img
             src={b5}
             alt="Brand 5 duplicate"
+            loading="lazy"
             className="w-[180px] h-20 shrink-0 opacity-80 hover:opacity-100 scale-100 hover:scale-105 transition-transform duration-300 ease-out grayscale hover:grayscale-0"
             aria-hidden="true"
           />
           <img
             src={b6}
             alt="Brand 6 duplicate"
+            loading="lazy"
             className="w-[180px] h-20 shrink-0 opacity-80 hover:opacity-100 scale-100 hover:scale-105 transition-transform duration-300 ease-out grayscale hover:grayscale-0"
             aria-hidden="true"
           />

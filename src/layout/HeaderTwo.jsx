@@ -48,6 +48,7 @@ const HeaderTwo = () => {
             <img 
               src={logo} 
               alt="Company Logo"
+              loading="lazy"
               className="h-12 w-auto cursor-pointer hover:opacity-80 transition-opacity duration-200" 
               onClick={() => navigate("/")}
             />
