@@ -34,7 +34,7 @@ const Directors = () => {
   ];
 
   return (
-    <section className="relative py-20 overflow-hidden">
+    <section className="relative py-40 overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute inset-0 opacity-30">
         <div className="absolute top-20 left-10 w-72 h-72 bg-blue-200 rounded-full blur-3xl"></div>

@@ -52,7 +52,7 @@ const Brands = () => {
 
   return (
     <div className="flex flex-col justify-center items-center py-8 bg-white/40 backdrop-blur-sm rounded-2xl">
-      <div className="max-w-[1300px] w-full text-center pb-20">
+      <div className="max-w-[1300px] w-full text-center pb-20 pt-10">
         <motion.h2
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}

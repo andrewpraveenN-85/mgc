@@ -173,7 +173,7 @@ const Leaders = () => {
   };
 
   return (
-    <section className="relative flex flex-col items-center py-20 overflow-hidden bg-white">
+    <section className="relative flex flex-col items-center py-40 overflow-hidden bg-white">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-10 w-72 h-72 bg-blue-400/10 rounded-full blur-3xl animate-pulse" />
