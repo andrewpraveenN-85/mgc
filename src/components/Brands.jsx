@@ -54,14 +54,14 @@ const Brands = () => {
     <div className="flex flex-col justify-center items-center py-8 bg-white/40 backdrop-blur-sm rounded-2xl">
       <div className="max-w-[1300px] w-full text-center pb-20 pt-10">
         <motion.h2
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.1 }}
-                  className="text-5xl md:text-7xl font-black bg-linear-to-r from-sky-700 via-cyan-700 to-blue-600 bg-clip-text text-transparent leading-tight mb-6"
-                >
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="text-3xl md:text-5xl font-black bg-linear-to-r from-sky-700 via-cyan-700 to-blue-600 bg-clip-text text-transparent leading-tight mb-6"
+        >
           - Vehicle Brands / Glock weapons / <br/> Steel Billets -
         </motion.h2>
-        <p className="mt-4 text-lg md:text-xl text-gray-700 font-medium max-w-3xl mx-auto">
+        <p className="mt-4 text-sm md:text-base text-gray-700 font-medium max-w-3xl mx-auto">
           A pioneer in vehicle selling and conversion with a global footprint
           and a craft-forward approach to quality and trust.
         </p>

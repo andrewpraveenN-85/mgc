@@ -207,7 +207,7 @@ const Leaders = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-5xl md:text-7xl font-black bg-linear-to-r from-sky-700 via-cyan-700 to-blue-600 bg-clip-text text-transparent leading-tight mb-6"
+          className="text-3xl md:text-5xl font-black bg-linear-to-r from-sky-700 via-cyan-700 to-blue-600 bg-clip-text text-transparent leading-tight mb-6"
         >
           Leaders in the Industry
         </motion.h2>
@@ -216,7 +216,7 @@ const Leaders = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mt-4 text-lg md:text-xl text-gray-700 font-medium max-w-3xl mx-auto"
+          className="mt-4 text-sm md:text-base text-gray-700 font-medium max-w-3xl mx-auto"
         >
           Model Group of Companies (Private) Limited (MGC) is a Sri Lankan‑owned
           company, delivering excellence across diverse sectors worldwide.

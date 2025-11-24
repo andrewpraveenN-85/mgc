@@ -978,10 +978,10 @@ const Hero = () => {
               Global Presence
             </span>
           </div>
-          <h1 className="text-4xl md:text-6xl font-black bg-linear-to-r from-sky-700 via-cyan-700 to-blue-600 bg-clip-text text-transparent leading-tight">
+          <h1 className="text-3xl md:text-5xl font-black bg-linear-to-r from-sky-700 via-cyan-700 to-blue-600 bg-clip-text text-transparent leading-tight">
             Our Global Network
           </h1>
-          <p className="mt-2 text-base md:text-lg text-gray-700 font-medium max-w-3xl mx-auto">
+          <p className="mt-2 text-sm md:text-base text-gray-700 font-medium max-w-3xl mx-auto">
             Discover our diverse portfolio of companies spanning across
             continents, delivering excellence worldwide
           </p>

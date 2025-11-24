@@ -39,7 +39,7 @@ const Header = () => {
               src={logo} 
               alt="Company Logo"
               loading="lazy"
-              className="h-12 w-auto cursor-pointer hover:opacity-80 transition-opacity duration-200" 
+              className="h-8 w-auto cursor-pointer hover:opacity-80 transition-opacity duration-200" 
               onClick={() => navigate("/")}
             />
           </div>
@@ -55,7 +55,7 @@ const Header = () => {
                   navigate(routeByItem[item] || "/");
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
-                className={`relative px-4 py-2 text-sm uppercase font-extrabold transition-all cursor-pointer duration-200 rounded-lg group ${
+                className={`relative px-3 py-1.5 text-xs uppercase font-extrabold transition-all cursor-pointer duration-200 rounded-lg group ${
                   activeTab === item
                     ? "bg-linear-to-r from-sky-700 via-cyan-700 to-blue-600 text-transparent bg-clip-text"
                     : "text-gray-600 hover:text-gray-900"
@@ -95,7 +95,7 @@ const Header = () => {
                     navigate(routeByItem[item] || "/");
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
-                  className={`px-4 py-3 text-left text-sm uppercase font-extrabold rounded-lg transition-all duration-200 ${
+                  className={`px-3 py-2 text-left text-xs uppercase font-extrabold rounded-lg transition-all duration-200 ${
                     activeTab === item
                       ? "bg-linear-to-r from-sky-700 via-cyan-700 to-blue-600 text-transparent bg-clip-text bg-indigo-50"
                       : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"

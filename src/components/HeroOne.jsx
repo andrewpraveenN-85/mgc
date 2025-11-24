@@ -515,13 +515,13 @@ const HeroOne = () => {
               <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
               Featured Company
             </div>
-            <h1 className="text-5xl md:text-8xl font-black leading-tight">
+            <h1 className="text-3xl md:text-5xl font-black leading-tight">
               {slide.title}
             </h1>
-            <p className="text-xl md:text-2xl max-w-2xl mx-auto leading-relaxed">
+            <p className="text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
               {slide.description}
             </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
+            <div className="flex flex-col text-sm sm:flex-row items-center justify-center gap-4 mt-8">
               <motion.a
                 href={slide.link ?? "#about"}
                 target="_blank"
@@ -532,7 +532,7 @@ const HeroOne = () => {
               >
                 Visit Website
                 <svg
-                  className="w-5 h-5"
+                  className="w-4 h-4"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -557,7 +557,7 @@ const HeroOne = () => {
             key={i}
             onClick={() => goTo(i)}
             aria-label={`Go to slide ${i + 1}`}
-            className={`w-1 h-1 sm:w-2 sm:h-2 rounded-full transition-all ${
+            className={`w-1 h-1 rounded-full transition-all ${
               index === i
                 ? "bg-white scale-125"
                 : "bg-white/50 hover:bg-white/70"

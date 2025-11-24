@@ -60,11 +60,11 @@ const Directors = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-5xl md:text-7xl font-black bg-linear-to-r from-sky-700 via-cyan-700 to-blue-600 bg-clip-text text-transparent leading-tight mb-6"
+            className="text-3xl md:text-5xl font-black bg-linear-to-r from-sky-700 via-cyan-700 to-blue-600 bg-clip-text text-transparent leading-tight mb-6"
           >
             Our Directors
           </motion.h2>
-          <p className="text-lg md:text-xl text-gray-600 font-medium max-w-4xl mx-auto leading-relaxed">
+          <p className="text-sm md:text-base text-gray-600 font-medium max-w-4xl mx-auto leading-relaxed">
             Established in 1995, Model Group of Companies (Private) Limited
             (MGC) is a 100% Sri Lankan-owned Company at the forefront of vehicle
             selling and conversion. We have expanded our operations to various
